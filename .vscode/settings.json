@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "fopen.h": "c",
+        "stdio.h": "c"
+    }
+}
