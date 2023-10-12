@@ -1,11 +1,8 @@
 #include<stdio.h>
 #include<string.h>
 #include"Token.h"
-#include"Lexcial.h"
 
-extern struct Token token[256];
-
-void Fread(FILE *fp, char FileDir[]){
+static Fread(FILE *fp, char FileDir[]){
     fp = fopen(FileDir, "r");
 /*  
     检查文件是否读取成功
@@ -17,14 +14,12 @@ void Fread(FILE *fp, char FileDir[]){
     fclose(fp);
 }
 
-int Fopen(void){
+int Open_File(void){
     int i;
     char Custom[256] = "\0";
     FILE *fp = NULL;
 
-    printf("Please input number to choose the file: 1~4\n");
-    printf("(Or input 5 to choose the Custom Debug Mode)\n");
-    Input:
+    printf("Please input number to choose the file: 1~5\n");
     scanf("%d", &i);
 
     switch(i){
@@ -46,15 +41,19 @@ int Fopen(void){
             break;
         }
         case 5:{
+            Fread(fp, "Examples/5_test.pl");
+            break;
+        }
+        case 6:{
             printf("Please Enter Any String:\n");
-            fflush(stdin);
+            fflush(stdin);//清空键入缓存
             gets(Custom);
             strcpy(buffer, Custom);
             strcat(buffer, " ");
             break;
         }
         default:{
-            printf("Please input a correct choice(1~5)\n");
+            printf("Please input a correct choice(1~5) and restart the program\n");
             return 0;
         }
     }

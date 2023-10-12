@@ -1,6 +1,6 @@
 #ifndef __FOPEN_H
 #define __FOPEN_H
 
-int Fopen(void);
+int Open_File(void);
 
 #endif
