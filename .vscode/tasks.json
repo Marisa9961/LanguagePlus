@@ -9,7 +9,7 @@
                 "-g",
                 "${file}",
                 "${fileDirname}\\Token.c",
-                "${fileDirname}\\Fopen.c",
+                "${fileDirname}\\OpenFile.c",
                 "${fileDirname}\\Lexcial.c",
                 "${fileDirname}\\Grammar.c",
                 "${fileDirname}\\Executor.c",

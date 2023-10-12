@@ -1,12 +1,12 @@
 #include<stdio.h>
-#include"Fopen.h"
+#include"OpenFile.h"
 #include"Lexcial.h"
 #include"Grammar.h"
 #include"Executor.h"
 
 int main(){
     
-    Fopen();
+    Open_File();
     Lexical_Test();
     Grammar_Test();
     Code_Translate_Test();

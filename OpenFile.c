@@ -2,7 +2,7 @@
 #include<string.h>
 #include"Token.h"
 
-static Fread(FILE *fp, char FileDir[]){
+static void Fread(FILE *fp, char FileDir[]){
     fp = fopen(FileDir, "r");
 /*  
     检查文件是否读取成功
@@ -11,6 +11,7 @@ static Fread(FILE *fp, char FileDir[]){
     else printf("File Open Succeed !\n");
 */
     fread(buffer, sizeof(buffer), 1, fp);
+    strcat(buffer, " ");
     fclose(fp);
 }
 
