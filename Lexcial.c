@@ -11,7 +11,7 @@ enum DFA_Lexcial{
     Next,//进入下一位
     Unknown,//非法
     End//文件读取结束
-};
+}DFA_State;
 
 inline static void Token_Next(int *i_token){
     //token指向下一个存储单元
@@ -101,11 +101,13 @@ static int Token_Check(int i_temp,int i_token){
 }
 
 int Lexcial_Check(void){
-    int DFA_State = Start;
+    DFA_State = Start;
     int i_temp = 0;//用于temp的遍历
     int i_buff = 0;//用于buffer的遍历
     int i_token = 0;//用于token的遍历
+
     temp[0] = buffer[0];//初始化
+
     do{
         switch(DFA_State){
                 case Start:{

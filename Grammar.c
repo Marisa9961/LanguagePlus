@@ -18,7 +18,7 @@ enum DFA_Grammar{//语法检定的状态
     Assign,//赋值语句
     Output,//输出语句
     End,//结束
-};
+}DFA_State;
 
 enum Act{//执行器的命令类型
     E_Null,//无内容
@@ -71,7 +71,7 @@ static int Add_Check(int i_line){
 }
 
 int Grammar_Check(void){
-    int DFA_State = Start;
+    DFA_State = Start;
     int i_token = 0;//用于token数组的遍历
     int i_line = 0;//token[line[i_line]]即为token的分行处
 
@@ -232,7 +232,7 @@ static void Executor_Output(int i_line, int *i_exec){
 }
 
 int Code_Translate(void){
-    int DFA_State = Start;
+    DFA_State = Start;
     int i_line = 0;//token[line[i_line]]即为token的分行处
     int i_exec = 0;//用于Exec_Code数组的遍历
     int i_def = 0;//用于已声明变量数组的遍历
