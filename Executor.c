@@ -2,9 +2,6 @@
 #include"Token.h"
 #include"Grammar.h"
 
-extern struct Token token[256];
-extern struct Exec_Example Exec_Code[256];
-
 void Executor(void){
     int i_code = 0;
     do{

@@ -2,8 +2,6 @@
 #include<string.h>
 #include"token.h"
 
-extern struct Token token[256];
-
 struct Exec_Example{//指令样例
     int Act;
     int Dest;
@@ -29,7 +27,7 @@ enum Act{//执行器的命令类型
     E_Print//输出
 };
 
-int Line_Separate(void){
+static int Line_Separate(void){
     int i_token = 0;//用于token数组的定位
     int i_line = 0;//用于line数组的遍历
     while(token[i_token].type != '\0'){
@@ -50,7 +48,7 @@ int Line_Separate(void){
     return 0;
 }
 
-int Add_Check(int i_line){
+static int Add_Check(int i_line){
     int i_token = line[i_line] + 1;//i_token是这一行的起点
     int i_line_next = i_line + 1;//i_line_next是下一行的起点
 
@@ -141,7 +139,7 @@ void Grammar_Test(void){
     else printf("Grammar mission completed!\n");
 }
 
-int Id_Def_Check(int *i_token){
+static int Id_Def_Check(int *i_token){
     if(token[*i_token].type == Id && token[*i_token].sym != 't'){
         //此时express中的id是已声明过的 需要定义到同一个地址
         for(int i = 0; strcmp(Id_Def[i].id,"\0"); i++){
@@ -157,7 +155,7 @@ int Id_Def_Check(int *i_token){
     else return 0;
 }
 
-int Executor_Add(int i_token, int *i_exec){
+static int Executor_Add(int i_token, int *i_exec){
     int i_right = i_token;
     int i_left = i_token - 2;
     
@@ -174,7 +172,7 @@ int Executor_Add(int i_token, int *i_exec){
     return 1;
 }
 
-int Executor_Express(int i_line, int *i_exec){
+static int Executor_Express(int i_line, int *i_exec){
 
     int i_first;
     int i_last;
@@ -203,7 +201,7 @@ int Executor_Express(int i_line, int *i_exec){
     return 0;
 }
 
-void Executor_Assign(int i_line, int *i_exec, int *id_def){
+static void Executor_Assign(int i_line, int *i_exec, int *id_def){
     int i_first = line[i_line] - 1;//i_token行等号的左侧
     int i_last = line[i_line] + 1;//i_token行等号的右侧
 
@@ -223,7 +221,7 @@ void Executor_Assign(int i_line, int *i_exec, int *id_def){
     *i_exec += 1;
 }
 
-void Executor_Output(int i_line, int *i_exec){
+static void Executor_Output(int i_line, int *i_exec){
     int i_last = line[i_line] + 1;
 
     Id_Def_Check(&i_last);

@@ -2,8 +2,6 @@
 #include<string.h>
 #include"Token.h"
 
-extern struct Token token[256];
-
 enum DFA_Lexcial{
     Start,//开始
     Num,//数字
@@ -15,31 +13,31 @@ enum DFA_Lexcial{
     End//文件读取结束
 };
 
-void Token_Next(int *i_token){
+inline static void Token_Next(int *i_token){
     //token指向下一个存储单元
     *(i_token) += 1;
 }
 
-void Temp_Clear(int *i_temp){
+inline static void Temp_Clear(int *i_temp){
     //数字 字母 符号 确认合法存入后，缓存区temp清零
     memset(temp, 0, sizeof temp);
     //temp指向首单元，存入新的token缓存
     *i_temp = -1;
 }
 
-int isNum(char temp){
+inline static int isNum(char temp){
     if(temp >= '0' && temp <= '9')
        return 1;
     else return 0;
 }
 
-int isChar(char temp){
+inline static int isChar(char temp){
     if((temp >= 'a' && temp <= 'z') || (temp >= 'A' && temp <= 'Z') || (temp == '_'))
        return 1;
     else return 0;
 }
 
-int Num_Check(int i_temp){
+static int Num_Check(int i_temp){
     for(int i = 0;i<i_temp;i++){
         if(isNum(temp[i]));
         else return 0;
@@ -47,7 +45,7 @@ int Num_Check(int i_temp){
     return 1;
 }
 
-int Char_Check(int i_temp){
+static int Char_Check(int i_temp){
     if(isChar(temp[0]));//首位要单独拿出来验证
     else return 0;
     for(int i = 1;temp[i] != '\0';i++){
@@ -57,7 +55,7 @@ int Char_Check(int i_temp){
     return 1;
 }
 
-int Space_Check(int *i_temp){
+static int Space_Check(int *i_temp){
     if(temp[0] == ' ' || temp[0] == '\n'){
         Temp_Clear(i_temp);
         return 1;
@@ -68,7 +66,7 @@ int Space_Check(int *i_temp){
     }
 }
 
-int Char_to_Num(int i_temp){
+static int Char_to_Num(int i_temp){
     int sum = 0;
     int factor = 1;
     for(int i = i_temp - 1; i >= 0; i--){
@@ -78,7 +76,7 @@ int Char_to_Num(int i_temp){
     return sum;
 }
 
-int Token_Check(int i_temp,int i_token){
+static int Token_Check(int i_temp,int i_token){
     if(Num_Check(i_temp)){
         token[i_token].type = Val;
         token[i_token].val = Char_to_Num(i_temp);
