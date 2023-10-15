@@ -26,7 +26,6 @@ int Open_File(void){
     switch(i){
         case 1:{
             Fread(fp, "Examples/1_assign.pl");
-            printf("%s",buffer);
             break;
         }
         case 2:{

@@ -18,7 +18,7 @@ enum DFA_Grammar{//语法检定的状态
     Assign,//赋值语句
     Output,//输出语句
     End,//结束
-}DFA_State;
+}DFA_Grammar_State;
 
 enum Act{//执行器的命令类型
     E_Null,//无内容
@@ -71,7 +71,7 @@ static int Add_Check(int i_line){
 }
 
 int Grammar_Check(void){
-    DFA_State = Start;
+    DFA_Grammar_State = Start;
     int i_token = 0;//用于token数组的遍历
     int i_line = 0;//token[line[i_line]]即为token的分行处
 
@@ -81,14 +81,14 @@ int Grammar_Check(void){
     }
 
     do{
-        switch (DFA_State){
+        switch (DFA_Grammar_State){
             case Start:{
                 if(token[line[i_line]].type == Equal)
-                    DFA_State = Assign;
+                    DFA_Grammar_State = Assign;
                 else if(token[line[i_line]].type == Echo)
-                    DFA_State = Output;
+                    DFA_Grammar_State = Output;
                 else
-                    DFA_State = End;
+                    DFA_Grammar_State = End;
                 continue;
             }
             case Assign:{
@@ -113,7 +113,7 @@ int Grammar_Check(void){
                     return 1;
                 }
                 i_line ++;
-                DFA_State = Start;
+                DFA_Grammar_State = Start;
                 continue;
             }
             case Output:{
@@ -123,11 +123,11 @@ int Grammar_Check(void){
                     return 1;
                 }
                 i_line ++;
-                DFA_State = Start;
+                DFA_Grammar_State = Start;
                 continue;
             }
         }
-    }while(DFA_State != End);
+    }while(DFA_Grammar_State != End);
 
     return 0;
 }
@@ -232,7 +232,7 @@ static void Executor_Output(int i_line, int *i_exec){
 }
 
 int Code_Translate(void){
-    DFA_State = Start;
+    DFA_Grammar_State = Start;
     int i_line = 0;//token[line[i_line]]即为token的分行处
     int i_exec = 0;//用于Exec_Code数组的遍历
     int i_def = 0;//用于已声明变量数组的遍历
@@ -245,14 +245,14 @@ int Code_Translate(void){
     }
 
     do{
-        switch (DFA_State){
+        switch (DFA_Grammar_State){
             case Start:{
                 if(token[line[i_line]].type == Equal)
-                    DFA_State = Assign;
+                    DFA_Grammar_State = Assign;
                 else if(token[line[i_line]].type == Echo)
-                    DFA_State = Output;
+                    DFA_Grammar_State = Output;
                 else
-                    DFA_State = End;
+                    DFA_Grammar_State = End;
                 continue;
             }
             case Assign:{
@@ -263,7 +263,7 @@ int Code_Translate(void){
                 }
                 Executor_Assign(i_line, &i_exec, &i_def);
                 i_line ++;
-                DFA_State = Start;
+                DFA_Grammar_State = Start;
                 continue;
             }
             case Output:{
@@ -274,11 +274,11 @@ int Code_Translate(void){
                 }
                 Executor_Output(i_line, &i_exec);
                 i_line ++;
-                DFA_State = Start;
+                DFA_Grammar_State = Start;
                 continue;
             }
         }
-    }while(DFA_State != End);
+    }while(DFA_Grammar_State != End);
 
     return 0;
 }

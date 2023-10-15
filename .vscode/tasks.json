@@ -10,7 +10,7 @@
                 "${file}",
                 "${fileDirname}\\Token.c",
                 "${fileDirname}\\OpenFile.c",
-                "${fileDirname}\\Lexcial.c",
+                "${fileDirname}\\Lexcial_New.c",
                 "${fileDirname}\\Grammar.c",
                 "${fileDirname}\\Executor.c",
                 "-o",
