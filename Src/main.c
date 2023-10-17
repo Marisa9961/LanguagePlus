@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include"OpenFile.h"
-#include"Lexcial_New.h"
+#include"Lexcial.h"
 #include"Grammar.h"
 #include"Executor.h"
 

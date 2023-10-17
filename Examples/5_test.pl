@@ -1,3 +1,6 @@
-a = 1
+a = 5 + 5
+b = 10 + 10     + a
+c = 
+    10
 
-echo a
+echo a + b + c
