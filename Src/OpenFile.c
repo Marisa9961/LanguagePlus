@@ -25,23 +25,23 @@ int Open_File(void){
 
     switch(i){
         case 1:{
-            Fread(fp, "../Examples/1_assign.pl");
+            Fread(fp, "../Document/Examples/1_assign.pl");
             break;
         }
         case 2:{
-            Fread(fp, "../Examples/2_express.pl");
+            Fread(fp, "../Document/Examples/2_express.pl");
             break;
         }
         case 3:{
-            Fread(fp, "../Examples/3_number.pl");
+            Fread(fp, "../Document/Examples/3_number.pl");
             break;
         }
         case 4:{
-            Fread(fp, "../Examples/4_symbol.pl");
+            Fread(fp, "../Document/Examples/4_symbol.pl");
             break;
         }
         case 5:{
-            Fread(fp, "../Examples/5_test.pl");
+            Fread(fp, "../Document/Examples/5_test.pl");
             break;
         }
         case 6:{
