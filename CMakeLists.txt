@@ -8,4 +8,6 @@ include_directories(Inc)
 
 file(GLOB_RECURSE Language_Plus_Src Src/*.c)
 
-add_executable(Language_Plus ${Language_Plus_Src})
+add_executable(Language_Plus
+    ${Language_Plus_Src}
+)
